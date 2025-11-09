@@ -27,7 +27,10 @@ interface BookmarkManagerProps {
     apiUrl?: string;
 }
 
-export function BookmarkManager({ userId, apiUrl = "http://localhost:5000" }: BookmarkManagerProps) {
+export function BookmarkManager({
+    userId,
+    apiUrl = "http://localhost:5000",
+}: BookmarkManagerProps) {
     const [bookmarks, setBookmarks] = useState<SavedQuestionSet[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -84,9 +87,13 @@ export function BookmarkManager({ userId, apiUrl = "http://localhost:5000" }: Bo
 
             if (data.success) {
                 setBookmarks((prev) =>
-                    prev.map((b) => (b.id === setId ? { ...b, isFavorite: data.data.isFavorite } : b))
+                    prev.map((b) =>
+                        b.id === setId ? { ...b, isFavorite: data.data.isFavorite } : b
+                    )
                 );
-                toast.success(data.data.isFavorite ? "Added to favorites" : "Removed from favorites");
+                toast.success(
+                    data.data.isFavorite ? "Added to favorites" : "Removed from favorites"
+                );
             }
         } catch {
             toast.error("Failed to update favorite");
@@ -140,7 +147,9 @@ export function BookmarkManager({ userId, apiUrl = "http://localhost:5000" }: Bo
                             key={tag}
                             onClick={() => setSelectedTag(tag)}
                             className={`px-4 py-2 rounded-lg ${
-                                selectedTag === tag ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700"
+                                selectedTag === tag
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-gray-100 text-gray-700"
                             }`}
                         >
                             {tag}
@@ -151,27 +160,42 @@ export function BookmarkManager({ userId, apiUrl = "http://localhost:5000" }: Bo
 
             {bookmarks.length === 0 ? (
                 <div className="text-center p-12 bg-gray-50 rounded-lg">
-                    <p className="text-gray-600">No saved questions yet. Start practicing to save your favorites!</p>
+                    <p className="text-gray-600">
+                        No saved questions yet. Start practicing to save your favorites!
+                    </p>
                 </div>
             ) : (
                 <div className="grid gap-4">
                     {bookmarks.map((bookmark) => (
-                        <div key={bookmark.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div
+                            key={bookmark.id}
+                            className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+                        >
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2">
-                                        <h3 className="text-lg font-semibold text-gray-900">{bookmark.title}</h3>
-                                        {bookmark.isFavorite && <span className="text-yellow-500">⭐</span>}
+                                        <h3 className="text-lg font-semibold text-gray-900">
+                                            {bookmark.title}
+                                        </h3>
+                                        {bookmark.isFavorite && (
+                                            <span className="text-yellow-500">⭐</span>
+                                        )}
                                     </div>
                                     {bookmark.description && (
-                                        <p className="text-sm text-gray-600 mt-1">{bookmark.description}</p>
+                                        <p className="text-sm text-gray-600 mt-1">
+                                            {bookmark.description}
+                                        </p>
                                     )}
                                 </div>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => toggleFavorite(bookmark.id)}
                                         className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                        title={bookmark.isFavorite ? "Remove from favorites" : "Add to favorites"}
+                                        title={
+                                            bookmark.isFavorite
+                                                ? "Remove from favorites"
+                                                : "Add to favorites"
+                                        }
                                     >
                                         {bookmark.isFavorite ? "⭐" : "☆"}
                                     </button>

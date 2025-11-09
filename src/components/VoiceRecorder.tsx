@@ -27,7 +27,11 @@ export function VoiceRecorder({ onRecordingComplete, maxDuration = 300 }: VoiceR
                 <div className="flex items-center gap-2">
                     {isRecording && (
                         <div className="flex items-center gap-2">
-                            <div className={`w-3 h-3 rounded-full ${isPaused ? "bg-yellow-500" : "bg-red-500 animate-pulse"}`} />
+                            <div
+                                className={`w-3 h-3 rounded-full ${
+                                    isPaused ? "bg-yellow-500" : "bg-red-500 animate-pulse"
+                                }`}
+                            />
                             <span className="text-sm font-mono text-gray-700">{formattedTime}</span>
                         </div>
                     )}
@@ -79,12 +83,7 @@ export function VoiceRecorder({ onRecordingComplete, maxDuration = 300 }: VoiceR
 
                 {audioURL && !isRecording && (
                     <div className="space-y-3">
-                        <audio
-                            id="recorded-audio"
-                            src={audioURL}
-                            className="w-full"
-                            controls
-                        />
+                        <audio id="recorded-audio" src={audioURL} className="w-full" controls />
                         <div className="flex gap-2">
                             <button
                                 onClick={resetRecording}
@@ -102,7 +101,8 @@ export function VoiceRecorder({ onRecordingComplete, maxDuration = 300 }: VoiceR
 
             <div className="mt-4 p-3 bg-blue-50 rounded-lg">
                 <p className="text-xs text-gray-600">
-                    💡 Tip: Speak clearly and take your time. You can pause and resume recording if needed.
+                    💡 Tip: Speak clearly and take your time. You can pause and resume recording if
+                    needed.
                 </p>
             </div>
         </div>
