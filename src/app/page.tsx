@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import UserMenu from "@/components/UserMenu";
-import { fetchWithRetry } from "@/lib/fetchWithRetry";
 
 import {
     Briefcase,
@@ -92,7 +91,7 @@ export default function Home() {
 
             // First, register/update user if authenticated
             if (session?.user) {
-                await fetchWithRetry(`${backendUrl}/api/db/auth/user`, {
+                await fetch(`${backendUrl}/api/db/auth/user`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -106,11 +105,6 @@ export default function Home() {
                         image: session.user.image,
                         googleId: session.user.email, // Using email as googleId for now
                     }),
-                    retries: 2,
-                    timeout: 60000, // 60 seconds for Render free tier
-                }).catch((error) => {
-                    console.warn("Failed to register user:", error);
-                    // Don't block question generation if user registration fails
                 });
             }
 
@@ -128,7 +122,7 @@ export default function Home() {
                 headers["x-user-image"] = session.user.image || "";
             }
 
-            const response = await fetchWithRetry(endpoint, {
+            const response = await fetch(endpoint, {
                 method: "POST",
                 headers,
                 body: JSON.stringify({
@@ -140,8 +134,6 @@ export default function Home() {
                     questionType,
                     userId: session?.user?.email || "anonymous", // Use email as userId or "anonymous"
                 }),
-                retries: 3,
-                timeout: 60000,
             });
 
             if (!response.ok) {
@@ -478,7 +470,10 @@ export default function Home() {
                                                     <button
                                                         key={num}
                                                         type="button"
-                                                        onClick={() => setNumberOfQuestions(num)}
+                                                        onClick={() => {
+                                                            console.log('Setting questions to:', num);
+                                                            setNumberOfQuestions(num);
+                                                        }}
                                                         className={`py-3 px-4 rounded-lg font-medium transition-all ${
                                                             numberOfQuestions === num
                                                                 ? "bg-blue-600 text-white scale-105"

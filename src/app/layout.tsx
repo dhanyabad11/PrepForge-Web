@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
@@ -19,17 +19,18 @@ export const metadata: Metadata = {
     description:
         "Generate personalized interview questions and practice with AI feedback. Perfect your interview skills with PrepForge.",
     manifest: "/manifest.json",
-    themeColor: "#3b82f6",
-    viewport: {
-        width: "device-width",
-        initialScale: 1,
-        maximumScale: 1,
-    },
     appleWebApp: {
         capable: true,
         statusBarStyle: "default",
         title: "PrepForge",
     },
+};
+
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    themeColor: "#3b82f6",
 };
 
 export default function RootLayout({
