@@ -471,7 +471,10 @@ export default function Home() {
                                                         key={num}
                                                         type="button"
                                                         onClick={() => {
-                                                            console.log('Setting questions to:', num);
+                                                            console.log(
+                                                                "Setting questions to:",
+                                                                num
+                                                            );
                                                             setNumberOfQuestions(num);
                                                         }}
                                                         className={`py-3 px-4 rounded-lg font-medium transition-all ${
