@@ -4,8 +4,8 @@
     "description": "AI-Powered Interview Practice Platform",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#3b82f6",
+    "background_color": "#0e0e0e",
+    "theme_color": "#00ffff",
     "orientation": "portrait-primary",
     "icons": [
         {
@@ -21,21 +21,34 @@
             "purpose": "maskable any"
         }
     ],
-    "categories": ["education", "productivity"],
+    "categories": [
+        "education",
+        "productivity"
+    ],
     "shortcuts": [
         {
             "name": "Start Practice",
             "short_name": "Practice",
             "description": "Start a new interview practice session",
             "url": "/",
-            "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+            "icons": [
+                {
+                    "src": "/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
         },
         {
             "name": "Dashboard",
             "short_name": "Dashboard",
             "description": "View your interview history",
             "url": "/dashboard",
-            "icons": [{ "src": "/icon-192x192.png", "sizes": "192x192" }]
+            "icons": [
+                {
+                    "src": "/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
         }
     ]
 }

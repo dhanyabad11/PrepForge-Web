@@ -19,6 +19,10 @@ export const metadata: Metadata = {
     description:
         "Generate personalized interview questions and practice with AI feedback. Perfect your interview skills with PrepForge.",
     manifest: "/manifest.json",
+    icons: {
+        icon: "/app-icon.png",
+        apple: "/app-icon.png",
+    },
     appleWebApp: {
         capable: true,
         statusBarStyle: "default",
@@ -30,7 +34,7 @@ export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
-    themeColor: "#3b82f6",
+    themeColor: "#00ffff",
 };
 
 export default function RootLayout({
