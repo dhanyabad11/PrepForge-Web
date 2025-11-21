@@ -13,6 +13,7 @@ import {
     Hash,
     Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 
 interface Question {
     id: string;
@@ -280,6 +281,16 @@ export default function Home() {
                         <div className="min-h-screen flex flex-col justify-center items-center px-4 animate-fadeIn">
                             {/* Header */}
                             <div className="text-center space-y-6 mb-16">
+                                <div className="flex justify-center mb-6">
+                                    <Image
+                                        src="/app-icon.png"
+                                        alt="PrepForge Icon"
+                                        width={100}
+                                        height={100}
+                                        className="rounded-2xl shadow-2xl"
+                                        priority
+                                    />
+                                </div>
                                 <h1
                                     className="text-7xl font-bold"
                                     style={{ color: "var(--foreground)" }}
@@ -318,12 +329,12 @@ export default function Home() {
                                                     color: "var(--foreground)",
                                                 }}
                                                 onFocus={(e) =>
-                                                    (e.target.style.borderBottomColor =
-                                                        "var(--accent)")
+                                                (e.target.style.borderBottomColor =
+                                                    "var(--accent)")
                                                 }
                                                 onBlur={(e) =>
-                                                    (e.target.style.borderBottomColor =
-                                                        "var(--border)")
+                                                (e.target.style.borderBottomColor =
+                                                    "var(--border)")
                                                 }
                                             />
                                         </div>
@@ -347,12 +358,12 @@ export default function Home() {
                                                     color: "var(--foreground)",
                                                 }}
                                                 onFocus={(e) =>
-                                                    (e.target.style.borderBottomColor =
-                                                        "var(--accent)")
+                                                (e.target.style.borderBottomColor =
+                                                    "var(--accent)")
                                                 }
                                                 onBlur={(e) =>
-                                                    (e.target.style.borderBottomColor =
-                                                        "var(--border)")
+                                                (e.target.style.borderBottomColor =
+                                                    "var(--border)")
                                                 }
                                             />
                                         </div>
@@ -406,11 +417,10 @@ export default function Home() {
                                                             key={level}
                                                             type="button"
                                                             onClick={() => setDifficulty(level)}
-                                                            className={`py-3 px-4 rounded-lg font-medium transition-all ${
-                                                                difficulty === level
-                                                                    ? "bg-blue-600 text-white scale-105"
-                                                                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                                            }`}
+                                                            className={`py-3 px-4 rounded-lg font-medium transition-all ${difficulty === level
+                                                                ? "bg-blue-600 text-white scale-105"
+                                                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                                                }`}
                                                         >
                                                             {level.charAt(0).toUpperCase() +
                                                                 level.slice(1)}
@@ -436,10 +446,10 @@ export default function Home() {
                                                 onChange={(e) =>
                                                     setQuestionType(
                                                         e.target.value as
-                                                            | "behavioral"
-                                                            | "technical"
-                                                            | "situational"
-                                                            | "all"
+                                                        | "behavioral"
+                                                        | "technical"
+                                                        | "situational"
+                                                        | "all"
                                                     )
                                                 }
                                                 className="w-full text-base bg-white border-2 rounded-lg px-4 py-3 cursor-pointer"
@@ -477,11 +487,10 @@ export default function Home() {
                                                             );
                                                             setNumberOfQuestions(num);
                                                         }}
-                                                        className={`py-3 px-4 rounded-lg font-medium transition-all ${
-                                                            numberOfQuestions === num
-                                                                ? "bg-blue-600 text-white scale-105"
-                                                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                                        }`}
+                                                        className={`py-3 px-4 rounded-lg font-medium transition-all ${numberOfQuestions === num
+                                                            ? "bg-blue-600 text-white scale-105"
+                                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                                            }`}
                                                     >
                                                         {num}
                                                     </button>
