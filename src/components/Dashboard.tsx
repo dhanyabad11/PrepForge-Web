@@ -129,11 +129,36 @@ export default function Dashboard() {
 
     if (error) {
         return (
-            <div className="flex justify-center items-center min-h-screen bg-red-50 text-red-700">
-                <div className="text-center">
-                    <h2 className="text-2xl font-bold mb-2">Something went wrong</h2>
-                    <p>{error}</p>
-                    <p>Please try refreshing the page.</p>
+            <div className="flex justify-center items-center min-h-screen bg-gray-50">
+                <div className="text-center max-w-md p-8 bg-white rounded-xl shadow-sm">
+                    <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Dashboard Unavailable</h2>
+                    <p className="text-gray-600 mb-4">
+                        {error.includes("timed out") || error.includes("database") || error.includes("Database")
+                            ? "The database connection is currently unavailable. Your practice history and statistics cannot be loaded."
+                            : error}
+                    </p>
+                    <p className="text-sm text-gray-500 mb-6">
+                        You can still practice interviews without saving your progress.
+                    </p>
+                    <div className="space-y-3">
+                        <Link
+                            href="/"
+                            className="block w-full px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-colors font-medium"
+                        >
+                            Start Practicing
+                        </Link>
+                        <button
+                            onClick={() => window.location.reload()}
+                            className="block w-full px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                        >
+                            Try Again
+                        </button>
+                    </div>
                 </div>
             </div>
         );
@@ -264,11 +289,10 @@ export default function Dashboard() {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <span
-                                                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                                                        interview.status === "completed"
+                                                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${interview.status === "completed"
                                                             ? "bg-green-100 text-green-800"
                                                             : "bg-yellow-100 text-yellow-800"
-                                                    }`}
+                                                        }`}
                                                 >
                                                     {interview.status}
                                                 </span>
